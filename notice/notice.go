@@ -7,7 +7,7 @@ func PrintLicenseNotice() {
   fmt.Println("Run: 'idb license' for a copy of the MIT license")
 }
 
-func PrintMITLicense(license string) {
+func PrintLicense(license string) {
   fmt.Println(license)
 }
 
