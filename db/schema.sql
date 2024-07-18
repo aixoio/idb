@@ -1,10 +1,17 @@
 
 CREATE TABLE IF NOT EXISTS ideas (
-  id integer not null primary key autoincrement,
-  idea text not null,
-  created_at DATETIME not null default DATETIME('now'),
-  updated_at DATETIME not null default DATETIME('now'),
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  idea TEXT NOT NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE INDEX IF NOT EXISTS ideas_id_idx ON ideas(id);
+
+CREATE TRIGGER IF NOT EXISTS update_ideas_updated_at
+AFTER UPDATE ON ideas
+FOR EACH ROW
+BEGIN
+  UPDATE ideas SET updated_at = CURRENT_TIMESTAMP WHERE id = OLD.id;
+END;
 
