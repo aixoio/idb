@@ -52,5 +52,18 @@ func main() {
     fmt.Println("Added your idea to the database")
     return
   }
+
+
+  if strings.Compare(strings.ToLower(os.Args[1]), "all") == 0 {
+    fmt.Println("ID | Idea | Created At | Updated At")
+    ideas, err := db.GetAll(d)
+    if err != nil {
+      panic(err)
+    }
+
+    for _, idea := range ideas {
+      fmt.Println(idea.String())
+    }
+  }
 }
 

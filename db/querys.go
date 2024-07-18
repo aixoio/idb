@@ -7,3 +7,8 @@ func NewIdea(db *sqlx.DB, idea string) error {
   return err
 }
 
+func GetAll(db *sqlx.DB) ([]Idea, error) {
+  ideas := []Idea{}
+  return ideas, db.Select(&ideas, "SELECT * FROM ideas ORDER BY id ASC")
+}
+
