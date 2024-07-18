@@ -35,6 +35,8 @@ func main() {
   if err != nil {
     panic(err)
   }
+  db.CreateDatabaseSchemaIfNotExists(d)
+
   defer db.CloseDB(d)
 }
 
