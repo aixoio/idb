@@ -2,6 +2,7 @@ package main
 
 import (
 	_ "embed"
+	"fmt"
 	"os"
 	"strings"
 
@@ -35,12 +36,21 @@ func main() {
   if err != nil {
     panic(err)
   }
+  defer db.CloseDB(d)
   
   err = db.CreateDatabaseSchemaIfNotExists(d)
   if err != nil {
     panic(err)
   }
 
-  defer db.CloseDB(d)
+  if strings.Compare(strings.ToLower(os.Args[1]), "add") == 0 && len(os.Args) >= 3 {
+    err := db.NewIdea(d, os.Args[2])
+    if err != nil {
+      panic(err)
+    }
+    
+    fmt.Println("Added your idea to the database")
+    return
+  }
 }
 
