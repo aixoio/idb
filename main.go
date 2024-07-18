@@ -15,7 +15,7 @@ var license string
 func main() {
   notice.PrintLicenseNotice()
   
-  if len(os.Args) == 1 {
+  if len(os.Args) <= 1 {
     help.PrintOnelineHelp()
     return
   }
