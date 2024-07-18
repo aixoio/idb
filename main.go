@@ -20,8 +20,14 @@ func main() {
     return
   }
 
+  if strings.Compare(strings.ToLower(os.Args[1]), "help") == 0 {
+    help.PrintFullHelp()
+    return
+  }
+
   if strings.Compare(strings.ToLower(os.Args[1]), "license") == 0 {
     notice.PrintLicense(license)
+    return
   }
 }
 
