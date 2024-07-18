@@ -5,6 +5,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/aixoio/idb/db"
 	"github.com/aixoio/idb/help"
 	"github.com/aixoio/idb/notice"
 )
@@ -29,5 +30,11 @@ func main() {
     notice.PrintLicense(license)
     return
   }
+
+  d, err := db.ConnectToDB()
+  if err != nil {
+    panic(err)
+  }
+  defer db.CloseDB(d)
 }
 
